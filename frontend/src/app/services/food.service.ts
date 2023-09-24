@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
-import { Food } from '../shared/models/Food'
+import { Food } from '../shared/models/Food.model'
 import { donuts, tags } from 'src/data'
-import { Tag } from '../shared/models/Tag'
+import { Tag } from '../shared/models/Tag.model'
 
 @Injectable({
   providedIn: 'root'
