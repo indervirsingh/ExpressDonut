@@ -1,1 +1,18 @@
-<p>home works!</p>
+<ul>
+    <li *ngFor="let donut of donuts">
+        <a routerLink="/food/{{donut.id}}">
+            <img [src]="donut.imageUrl" [alt]="donut.name"/>
+            <div class="content">
+                <div class="name">
+                    {{donut.name}}
+                </div>
+                <span class="favorite {{donut.favorite?'':'not'}}">
+                    ❤
+                </span>
+                <div class="stars">
+                    <star-rating [stars]="donut.stars" />
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>

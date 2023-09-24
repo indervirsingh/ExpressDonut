@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { FoodService } from 'src/app/services/food.service'
 import { Food } from 'src/app/shared/models/Food'
 
 @Component({
@@ -9,7 +10,9 @@ import { Food } from 'src/app/shared/models/Food'
 export class HomeComponent implements OnInit {
   
   donuts:Food[] = []
-  
+  constructor(private foodService:FoodService) {
+    this.donuts = foodService.getAll()
+  }
   ngOnInit(): void {
   }
 }
