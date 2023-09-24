@@ -9,7 +9,11 @@ export class FoodService {
 
   constructor() { }
 
-  getAll():Food[]{
+  getAll():Food[] {
     return donuts
+  }
+
+  getAllFoodsBySearchTerm(searchTerm: string) {
+    return this.getAll().filter(donut => donut.name.toLowerCase().includes(searchTerm.toLowerCase()))
   }
 }
