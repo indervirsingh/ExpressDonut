@@ -1,4 +1,5 @@
 import { Food } from "./app/shared/models/Food"
+import { Tag } from "./app/shared/models/Tag"
 
 export const donuts: Food[] = [
     {
@@ -142,4 +143,3 @@ export const tags:Tag[] = [
     { name: 'Donut Holes', count: 1 },
     { name: 'Dozen', count: 1 },
 ]
-
