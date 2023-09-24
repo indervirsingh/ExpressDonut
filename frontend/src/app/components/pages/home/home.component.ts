@@ -13,9 +13,13 @@ export class HomeComponent implements OnInit {
   donuts:Food[] = []
   constructor(private foodService:FoodService, activatedRoute:ActivatedRoute) {
     activatedRoute.params.subscribe((params) => {
-      if(params['searchTerm']) {
+      if (params['searchTerm']) {
         this.donuts = this.foodService.getAllFoodsBySearchTerm(params['searchTerm'])
-      } else {
+      }
+      else if (params['tag']) {
+        this.donuts = this.foodService.getAllFoodsByTag(params['tag'])
+      } 
+      else {
         this.donuts = foodService.getAll()
       }
     })
