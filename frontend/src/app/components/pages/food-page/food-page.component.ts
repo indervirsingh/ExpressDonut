@@ -10,7 +10,7 @@ import { Food } from 'src/app/shared/models/Food'
 })
 export class FoodPageComponent implements OnInit {
 
-  food!: Food;
+  food!: Food
 
   constructor(activatedRoute: ActivatedRoute, foodService: FoodService) {
     activatedRoute.params.subscribe((params) => {
