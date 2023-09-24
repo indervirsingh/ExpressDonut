@@ -12,6 +12,13 @@
                 <div class="stars">
                     <star-rating [stars]="donut.stars" />
                 </div>
+                <div class="product-item-footer">
+                    <div class="price">
+                        <span>
+                            {{donut.price | currency}}
+                        </span>
+                    </div>
+                </div>
             </div>
         </a>
     </li>
