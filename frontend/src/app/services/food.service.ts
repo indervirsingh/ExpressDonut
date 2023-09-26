@@ -4,7 +4,7 @@ import { Tag } from '../shared/models/tag.model'
 import { Food } from '../shared/models/food.model'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { FOODS_BY_ID_URL, FOODS_BY_SEARCH_URL, FOODS_TAGS_URL, FOODS_URL } from '../shared/models/constants/urls'
+import { FOODS_BY_ID_URL, FOODS_BY_SEARCH_URL, FOODS_BY_TAG_URL, FOODS_TAGS_URL, FOODS_URL } from '../shared/models/constants/urls'
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +26,9 @@ export class FoodService {
   }
 
   getAllFoodsByTag(tag: string): Observable<Food[]> {
-    return tag === "All"?
-    this.getAll(): 
-    this.http.get<Food[]>(FOODS_TAGS_URL + tag)
+    return tag === "All" ?
+      this.getAll() : 
+      this.http.get<Food[]>(FOODS_BY_TAG_URL + tag)
   }
 
   getFoodById(foodId: string): Observable<Food> {
