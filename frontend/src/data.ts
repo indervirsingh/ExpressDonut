@@ -1,7 +1,7 @@
 import { Tag } from './app/shared/models/tag.model'
 import { Food } from './app/shared/models/food.model'
 
-export const donuts: Food[] = [
+export const foods: Food[] = [
     {
         id: '1',
         name: 'Apple Fritter',

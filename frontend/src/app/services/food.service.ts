@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { donuts, tags } from 'src/data'
+import { foods, tags } from 'src/data'
 import { Tag } from '../shared/models/tag.model'
 import { Food } from '../shared/models/food.model'
 
@@ -11,11 +11,11 @@ export class FoodService {
   constructor() { }
 
   getAll():Food[] {
-    return donuts
+    return foods
   }
 
   getAllFoodsBySearchTerm(searchTerm: string) {
-    return this.getAll().filter(donut => donut.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    return this.getAll().filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()))
   }
 
   getAllTags():Tag[] {
@@ -25,10 +25,10 @@ export class FoodService {
   getAllFoodsByTag(tag: string):Food[] {
     return tag === "All"?
     this.getAll(): 
-    this.getAll().filter(donut => donut.tags?.includes(tag))
+    this.getAll().filter(food => food.tags?.includes(tag))
   }
 
   getFoodById(foodId: string):Food {
-    return this.getAll().find(donut => donut.id == foodId) ?? new Food()
+    return this.getAll().find(food => food.id == foodId) ?? new Food()
   }
 }

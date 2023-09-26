@@ -10,17 +10,17 @@ import { Food } from 'src/app/shared/models/food.model'
 })
 export class HomeComponent implements OnInit {
   
-  donuts:Food[] = []
+  foods:Food[] = []
   constructor(private foodService:FoodService, activatedRoute:ActivatedRoute) {
     activatedRoute.params.subscribe((params) => {
       if (params['searchTerm']) {
-        this.donuts = this.foodService.getAllFoodsBySearchTerm(params['searchTerm'])
+        this.foods = this.foodService.getAllFoodsBySearchTerm(params['searchTerm'])
       }
       else if (params['tag']) {
-        this.donuts = this.foodService.getAllFoodsByTag(params['tag'])
+        this.foods = this.foodService.getAllFoodsByTag(params['tag'])
       } 
       else {
-        this.donuts = foodService.getAll()
+        this.foods = foodService.getAll()
       }
     })
 

@@ -1,23 +1,26 @@
 <app-search></app-search>
 <app-tags></app-tags>
+<app-not-found
+    [visible]="!foods || foods.length"
+></app-not-found>
 <ul>
-    <li *ngFor="let donut of donuts">
-        <a routerLink="/food/{{donut.id}}">
-            <img [src]="donut.imageUrl" [alt]="donut.name"/>
+    <li *ngFor="let food of foods">
+        <a routerLink="/food/{{food.id}}">
+            <img [src]="food.imageUrl" [alt]="food.name"/>
             <div class="content">
                 <div class="name">
-                    {{donut.name}}
+                    {{food.name}}
                 </div>
-                <span class="favorite {{donut.favorite?'':'not'}}">
+                <span class="favorite {{food.favorite?'':'not'}}">
                     ❤
                 </span>
                 <div class="stars">
-                    <star-rating [stars]="donut.stars" />
+                    <star-rating [stars]="food.stars" />
                 </div>
                 <div class="product-item-footer">
                     <div class="price">
                         <span>
-                            {{donut.price | currency}}
+                            {{food.price | currency}}
                         </span>
                     </div>
                 </div>
