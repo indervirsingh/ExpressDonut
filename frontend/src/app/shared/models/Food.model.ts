@@ -1,7 +1,7 @@
 export class Food {
     id!: string
     name!: string
-    price?: number
+    price!: number
     favorite!: boolean
     stars!: number
     imageUrl!: string
