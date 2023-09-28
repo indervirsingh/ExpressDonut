@@ -3,15 +3,15 @@
         <a routerLink="/" class="logo">Express Donut</a>
         <nav>
             <ul>
-                <li *ngIf="!user.token">
+                <li *ngIf="!isAuth">
                     <a routerLink="/login">Login</a>
                 </li>
-                <li class="menu-container">
+                <li *ngIf="isAuth" class="menu-container">
                     <a routerLink="/dashboard">{{user.name}}</a>
                     <div class="menu">
                         <a routerLink="/profile">Profile</a>
                         <a routerLink="/orders">Orders</a>
-                        <a>Logout</a>
+                        <a (click)="logout()">Logout</a>
                     </div>
                 </li>
                 <li>

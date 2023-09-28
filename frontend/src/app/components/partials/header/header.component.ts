@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
   
   cartQuantity = 0
   user!: User
-  
-  constructor(cartService: CartService, userService: UserService) {
+
+  constructor(cartService: CartService, private userService: UserService) {
     cartService.getCartObservable().subscribe((newCart) => {
       this.cartQuantity = newCart.totalCount
     })
@@ -23,5 +23,13 @@ export class HeaderComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.userService.logout()
+  }
+
+  get isAuth() {
+    return this.user.token
   }
 }
