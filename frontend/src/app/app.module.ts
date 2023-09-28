@@ -17,6 +17,7 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
 import { LoginPageComponent } from './components/pages/login-page/login-page.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { ToastrModule } from 'ngx-toastr'
+import { timeout } from 'rxjs'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,11 @@ import { ToastrModule } from 'ngx-toastr'
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      newestOnTop: false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
