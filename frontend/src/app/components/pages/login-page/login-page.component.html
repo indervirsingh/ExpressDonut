@@ -10,17 +10,15 @@
             type="email"
             label="Email">
             </text-input>
-            
-            <div class="input-container">
-                <label>Password</label>
-                <div>
-                    <input type="password" placeholder="Password" formControlName="password">
-                </div>
 
-                <div class="error-list" *ngIf="fc.password.errors && isSubmitted">
-                    <div *ngIf="fc.password.errors.required">Password is incorrect</div>
-                </div>
-            </div>
+            <text-input
+            [control]="fc.password"
+            [showErrorsWhen]="isSubmitted"
+            type="password"
+            label="Password">
+            </text-input>
+
+
             <div class="button">
                 <button type="submit">Login</button>
             </div>
