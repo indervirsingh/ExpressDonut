@@ -19,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { ToastrModule } from 'ngx-toastr'
 import { timeout } from 'rxjs';
 import { InputContainerComponent } from './components/partials/input-container/input-container.component';
-import { InputValidationComponent } from './components/partials/input-validation/input-validation.component'
+import { InputValidationComponent } from './components/partials/input-validation/input-validation.component';
+import { TextInputComponent } from './components/partials/text-input/text-input.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { InputValidationComponent } from './components/partials/input-validation
     NotFoundComponent,
     LoginPageComponent,
     InputContainerComponent,
-    InputValidationComponent
+    InputValidationComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
