@@ -19,9 +19,12 @@ router.get('/seed', asyncHandler(
 )
 
 
-router.get('/', (req, res) => {
-    res.send(foods)
-})
+router.get('/', asyncHandler(
+    async (req, res) => {
+        const foodsArray = await FoodModel.find()
+        res.send(foodsArray)
+    })
+)
 
 router.get('/search/:searchTerm', (req, res) => {
     const searchTerm = req.params.searchTerm
