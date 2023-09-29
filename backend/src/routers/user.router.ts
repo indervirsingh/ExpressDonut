@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { sample_users } from '../data'
+// import { sample_users } from '../data'
 import jwt from 'jsonwebtoken'
 import asyncHandler from 'express-async-handler'
 import { UserModel } from '../models/user.model'
@@ -15,7 +15,7 @@ router.get('/seed', asyncHandler(
             return
         }
 
-        await UserModel.create(sample_users)
+        // await UserModel.create(sample_users)
         res.send("Seed is done")
     })
 )

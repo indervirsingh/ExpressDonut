@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { sample_foods } from '../data'
+// import { sample_foods } from '../data'
 import asyncHandler from 'express-async-handler'
 import { FoodModel } from '../models/food.model'
 
@@ -13,7 +13,7 @@ router.get('/seed', asyncHandler(
             return
         }
 
-        await FoodModel.create(sample_foods)
+        // await FoodModel.create(sample_foods)
         res.send("Seed is done")
     })
 )
