@@ -15,6 +15,10 @@
                     {{cartItem.food.name}}
                 </a>
             </div>
+            <!-- Individual price of food -->
+            <div>
+                {{cartItem.food.price | currency}}
+            </div>
             <div>
                 <select #quantitySelect 
                 [value]="cartItem.quantity"
@@ -26,6 +30,7 @@
                 <option>5</option>
                 </select>
             </div>
+            <!-- Price of food after quantity selected (ex: x3 or x5) -->
             <div>
                 {{cartItem.price | currency}}
             </div>
