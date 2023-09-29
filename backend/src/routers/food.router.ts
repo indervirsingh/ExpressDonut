@@ -18,7 +18,6 @@ router.get('/seed', asyncHandler(
     })
 )
 
-
 router.get('/', asyncHandler(
     async (req, res) => {
         const foodsArray = await FoodModel.find()
@@ -26,11 +25,13 @@ router.get('/', asyncHandler(
     })
 )
 
-router.get('/search/:searchTerm', (req, res) => {
-    const searchTerm = req.params.searchTerm
-    const foodsArray = foods.filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    res.send(foodsArray)
-})
+router.get('/search/:searchTerm', asyncHandler(
+    async (req, res) => {
+        const searchRegex = new RegExp(req.params.searchTerm, 'i')
+        const foodsArray = await FoodModel.find({ name: {$regex: searchRegex }})
+        res.send(foodsArray)
+    })
+)
 
 router.get('/tags', (req, res) => {
     res.send(tags)
