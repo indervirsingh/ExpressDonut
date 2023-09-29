@@ -1,5 +1,5 @@
 
-export const foods: any[] = [
+export const sample_foods: any[] = [
     {
         // id: '1',
         name: 'Apple Fritter',
@@ -119,7 +119,7 @@ export const foods: any[] = [
     },
 ]
 
-export const tags:any[] = [
+export const sample_tags: any[] = [
     { name: 'All', count: 13 },
     { name: 'Fancy', count: 4 },
     { name: 'Apple', count: 2 },
