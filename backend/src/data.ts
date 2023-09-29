@@ -1,7 +1,7 @@
 
 export const foods: any[] = [
     {
-        id: '1',
+        // id: '1',
         name: 'Apple Fritter',
         price: 3.00,
         favorite: false,
@@ -10,7 +10,7 @@ export const foods: any[] = [
         tags: ['Fancy', 'Apple']
     },
     {
-        id: '2',
+        // id: '2',
         name: 'Apple & Cherry Turnover',
         price: 3.00,
         favorite: false,
@@ -19,7 +19,7 @@ export const foods: any[] = [
         tags: ['Fancy', 'Apple', 'Cherry']
     },
     {
-        id: '3',
+        // id: '3',
         name: 'Cheese Danish',
         price: 3.00,
         favorite: false,
@@ -28,7 +28,7 @@ export const foods: any[] = [
         tags: ['Fancy', 'Cheese', 'Danish']
     },
     {
-        id: '4',
+        // id: '4',
         name: 'Plain Croissant',
         price: 3.00,
         favorite: false,
@@ -37,7 +37,7 @@ export const foods: any[] = [
         tags: ['Fancy', 'Plain']
     },
     {
-        id: '5',
+        // id: '5',
         name: 'Chocolate Bar',
         price: 2.00,
         favorite: false,
@@ -46,7 +46,7 @@ export const foods: any[] = [
         tags: ['Bar', 'Chocolate']
     },
     {
-        id: '6',
+        // id: '6',
         name: 'Maple Bar',
         price: 2.00,
         favorite: false,
@@ -55,7 +55,7 @@ export const foods: any[] = [
         tags: ['Bar', 'Maple']
     },
     {
-        id: '7',
+        // id: '7',
         name: 'Glazed Twist',
         price: 2.00,
         favorite: false,
@@ -64,7 +64,7 @@ export const foods: any[] = [
         tags: ['Twist', 'Glazed']
     },
     {
-        id: '8',
+        // id: '8',
         name: 'Maple Twist',
         price: 2.00,
         favorite: false,
@@ -73,7 +73,7 @@ export const foods: any[] = [
         tags: ['Twist', 'Maple']
     },
     {
-        id: '9',
+        // id: '9',
         name: 'Chocolate Twist',
         price: 2.00,
         favorite: false,
@@ -82,7 +82,7 @@ export const foods: any[] = [
         tags: ['Twist', 'Chocolate']
     },
     {
-        id: '10',
+        // id: '10',
         name: 'French Curler',
         price: 2.50,
         favorite: false,
@@ -91,7 +91,7 @@ export const foods: any[] = [
         tags: ['French', 'Chocolate', 'Glazed']
     },
     {
-        id: '11',
+        // id: '11',
         name: 'Devils Food Donut',
         price: 1.50,
         favorite: false,
@@ -100,7 +100,7 @@ export const foods: any[] = [
         tags: ['Devils Food', 'Chocolate', 'Peanut', 'Coconut', 'Donut']
     },
     {
-        id: '12',
+        // id: '12',
         name: 'Sprinkle Donut',
         price: 1.50,
         favorite: false,
@@ -109,7 +109,7 @@ export const foods: any[] = [
         tags: ['Sprinkle', 'Chocolate', 'Donut']
     },
     {
-        id: '13',
+        // id: '13',
         name: 'Donut Holes',
         price: 1.50,
         favorite: false,
