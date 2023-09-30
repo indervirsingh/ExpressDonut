@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http'
 import { USER_LOGIN_URL } from '../shared/constants/urls'
 import { ToastrService } from 'ngx-toastr'
 import { UserRegister } from '../shared/interfaces/user-register.interface'
-import { USER_REGISTER_URL } from '../shared/models/constants/urls'
+import { USER_REGISTER_URL } from '../shared/constants/urls'
 
 const USER_KEY = 'User'
 @Injectable({
@@ -39,7 +39,22 @@ export class UserService {
   }
 
   register(userRegister: UserRegister): Observable<User> {
-    return this.http.post<User>(USER_REGISTER_URL)
+    return this.http.post<User>(USER_REGISTER_URL, userRegister).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorage(user)
+          this.userSubject.next(user)
+          this.toastrService.success(
+            `Welcome to Express Donut ${user.name}`,
+            'Register Successful'
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error,
+            'Register Failed')
+        }
+      })
+    )
   }
 
   logout() {
