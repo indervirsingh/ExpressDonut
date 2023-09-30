@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http'
 import { USER_LOGIN_URL } from '../shared/constants/urls'
 import { ToastrService } from 'ngx-toastr'
 import { UserRegister } from '../shared/interfaces/user-register.interface'
+import { USER_REGISTER_URL } from '../shared/models/constants/urls'
 
 const USER_KEY = 'User'
 @Injectable({
@@ -38,7 +39,7 @@ export class UserService {
   }
 
   register(userRegister: UserRegister): Observable<User> {
-    return this.http.post<User>()
+    return this.http.post<User>(USER_REGISTER_URL)
   }
 
   logout() {
