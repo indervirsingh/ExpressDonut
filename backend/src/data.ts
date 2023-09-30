@@ -29,12 +29,12 @@ export const sample_foods: any[] = [
     },
     {
         // id: '4',
-        name: 'Plain Croissant',
+        name: 'Croissant',
         price: 3.00,
         favorite: false,
         stars: 5.0,
         imageUrl: 'assets/croissants.jpg',
-        tags: ['Fancy', 'Plain']
+        tags: ['Fancy']
     },
     {
         // id: '5',
@@ -120,13 +120,12 @@ export const sample_foods: any[] = [
 ]
 
 export const sample_tags: any[] = [
-    { name: 'All', count: 13 },
+    { name: 'All', count: 18 },
     { name: 'Fancy', count: 4 },
     { name: 'Apple', count: 2 },
     { name: 'Cherry', count: 1 },
     { name: 'Cheese', count: 1 },
     { name: 'Danish', count: 1 },
-    { name: 'Plain', count: 1 },
     { name: 'Bar', count: 2 },
     { name: 'Twist', count: 3 },
     { name: 'Maple', count: 2 },
