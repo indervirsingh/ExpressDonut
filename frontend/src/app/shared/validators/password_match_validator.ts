@@ -19,4 +19,6 @@ export const PasswordsMatchValidator = (
                 confirmPasswordControl.setErrors(errors)
             }
         }
+        return validator
     }
+
