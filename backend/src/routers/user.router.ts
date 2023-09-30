@@ -25,7 +25,7 @@ router.get('/seed', asyncHandler(
 router.post('/login', asyncHandler(
     async (req, res) => {
         const { email, password } = req.body
-        const user = await UserModel.findOne({ email, password })        
+        const user = await UserModel.findOne({ email })        
         if (user) {
             res.send(generateTokenResponse(user))
         } else {
@@ -38,7 +38,7 @@ router.post('/register', asyncHandler(
     async (req, res) => {
         const { name, email, password, address } = req.body
         const user = await UserModel.findOne({ email })
-        if (user) {
+        if (user && (await bcrypt.compare(password, user.password))) {
             res.status(HTTP_BAD_REQUEST)
             .send('User already exists, please login!')
             return
