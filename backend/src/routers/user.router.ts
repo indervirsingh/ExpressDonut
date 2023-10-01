@@ -25,7 +25,7 @@ router.get('/seed', asyncHandler(
 router.post('/login', asyncHandler(
     async (req, res) => {
         const { email, password } = req.body
-        const user = await UserModel.findOne({ email })        
+        const user = await UserModel.findOne({ email })
         if (user && (await bcrypt.compare(password, user.password))) {
             res.send(generateTokenResponse(user))
         } else {
