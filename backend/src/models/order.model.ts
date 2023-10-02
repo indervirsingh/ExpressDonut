@@ -1,5 +1,6 @@
 import { model, Schema, Types } from 'mongoose'
 import { Food, FoodSchema } from './food.model'
+import { OrderStatus } from '../constants/order_status'
 
 export interface LatLng {
     lat: string
@@ -26,3 +27,15 @@ export const OrderItemSchema = new Schema<OrderItem>(
         quantity: { type: Number, required: true }
     }
 )
+
+export class Order {
+    id!: number
+    items!: OrderItem[]
+    totalPrice!: number
+    name!: string
+    address!: string
+    addressLatLng?: LatLng
+    paymentId!: string
+    createdAt!: string
+    status!: OrderStatus
+}
