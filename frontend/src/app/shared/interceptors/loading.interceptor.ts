@@ -3,16 +3,44 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpEventType
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, tap, timer } from 'rxjs';
+import { LoadingService } from 'src/app/services/loading.service'
 
+var pendingRequests = 0
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private loadingService: LoadingService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+    this.loadingService.showLoading()
+    pendingRequests = pendingRequests + 1
+  
+    return timer(1000).pipe(
+      switchMap(() => next.handle(request).pipe(
+        tap({
+          next: (event) => {
+            if (event.type === HttpEventType.Response) {
+              this.handleHideLoading()
+            }
+          },
+          error: (_) => {
+            this.handleHideLoading()
+          }
+        }))
+      )
+    )
+  
+  }
+
+  handleHideLoading() {
+    pendingRequests = pendingRequests - 1
+
+    if (pendingRequests === 0) {
+      this.loadingService.hideLoading()
+    }
   }
 }
