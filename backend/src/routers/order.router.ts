@@ -39,6 +39,22 @@ router.get('/newOrderForCurrentUser', asyncHandler(
         else res.status(HTTP_BAD_REQUEST).send()
     })
 )
+
+router.post('/pay', asyncHandler(
+    async (req: any, res) => {
+        const { paymentId } = req.body
+        const order = await getNewOrderForCurrentUser(req)
+
+        if (!order) {
+            res.status(HTTP_BAD_REQUEST).send('Order Not Found!')
+            return
+        }
+
+        order.paymentId = paymentId
+        order.status = OrderStatus.PAYED
+        await order.save()
+    })
+)
 export default router
 
 async function getNewOrderForCurrentUser(req: any) {
