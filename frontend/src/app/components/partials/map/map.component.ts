@@ -20,7 +20,7 @@ export class MapComponent implements OnChanges {
     iconSize: [42, 42],
     iconAnchor: [21, 42],
   })
-  private readonly DEFAULT_LATLNG: LatLngTuple = [38.524240,-121.409670]
+  private readonly DEFAULT_LATLNG: LatLngTuple = [38.524240, -121.409670]
 
   @ViewChild('map', {static:true})
   mapRef!: ElementRef
