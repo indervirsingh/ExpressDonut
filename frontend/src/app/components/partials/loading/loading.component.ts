@@ -15,7 +15,6 @@ export class LoadingComponent implements OnInit {
       this.isLoading = isLoading
     })
 
-    loadingService.showLoading()
   }
 
   ngOnInit(): void {
