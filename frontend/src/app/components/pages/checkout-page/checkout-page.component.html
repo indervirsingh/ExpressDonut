@@ -8,7 +8,10 @@
         <order-items-list [order]="order"></order-items-list>
     </div>
     <div class="map">
-        <app-title title="Choose Your Address" fontSize="1.6rem"></app-title>
+        <app-title 
+        title="Choose Your Address" 
+        fontSize="1.6rem"></app-title>
+        <map [order]="order"></map>
     </div>
     <div class="buttons-container">
         <div class="buttons">
