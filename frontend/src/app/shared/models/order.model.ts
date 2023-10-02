@@ -7,7 +7,7 @@ export class Order {
     totalPrice!: number
     name!: string
     address!: string
-    adressLatLng?: LatLng
+    addressLatLng?: LatLng
     paymentId!: string
     createdAt!: string
     status!: string
