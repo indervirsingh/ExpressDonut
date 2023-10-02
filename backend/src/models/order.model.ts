@@ -50,7 +50,7 @@ const orderSchema = new Schema<Order>(
         paymentId: { type: String },
         totalPrice: { type: Number, required: true },
         items: { type: [OrderItemSchema], required: true },
-        status: { type: String, default: OrderStatus.new },
+        status: { type: String, default: OrderStatus.NEW },
         user: { type: Schema.Types.ObjectId, required: true }
     }, {
         timestamps: true,
