@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Order } from '../shared/models/order.model'
 import { HttpClient } from '@angular/common/http'
-import { ORDER_CREATE_URL, ORDER_NEW_FOR_CURRENT_USER_URL } from '../shared/constants/urls'
+import { ORDER_CREATE_URL, ORDER_NEW_FOR_CURRENT_USER_URL, ORDER_PAY_URL } from '../shared/constants/urls'
 import { Observable } from 'rxjs'
 
 @Injectable({
@@ -18,4 +18,9 @@ export class OrderService {
   getNewOrderForCurrentUser(): Observable<Order> {
     return this.http.get<Order>(ORDER_NEW_FOR_CURRENT_USER_URL)
   }
+
+  pay(order: Order): Observable<String> {
+    return this.http.post<String>(ORDER_PAY_URL, order)
+  }
+  
 }
