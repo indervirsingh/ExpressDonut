@@ -16,6 +16,10 @@
     flex-direction: column;
 }
 
+form {
+    width: 100%;
+}
+
 .buttons-container {
     flex-basis: 100%;
     display: flex;
