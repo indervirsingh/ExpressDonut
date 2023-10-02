@@ -28,14 +28,14 @@ export const OrderItemSchema = new Schema<OrderItem>(
     }
 )
 
-export class Order {
-    id!: number
-    items!: OrderItem[]
-    totalPrice!: number
-    name!: string
-    address!: string
-    addressLatLng?: LatLng
-    paymentId!: string
-    createdAt!: string
-    status!: OrderStatus
+export interface Order {
+    id: number
+    items: OrderItem[]
+    totalPrice: number
+    name: string
+    address: string
+    addressLatLng: LatLng
+    paymentId: string
+    createdAt: string
+    status: OrderStatus
 }
