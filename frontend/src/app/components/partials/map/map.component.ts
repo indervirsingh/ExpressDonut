@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core'
-import { icon, LatLng, LatLngExpression, LatLngTuple, LeafletMouseEvent, map, Map, marker, Marker, tileLayer } from 'leaflet'
+import { icon, latLng, LatLng, LatLngExpression, LatLngTuple, LeafletMouseEvent, map, Map, marker, Marker, tileLayer } from 'leaflet'
 import { LocationService } from 'src/app/services/location.service'
 import { Order } from 'src/app/shared/models/order.model'
 
@@ -59,6 +59,7 @@ export class MapComponent implements OnChanges {
     this.map = map(this.mapRef.nativeElement, {
       attributionControl: false
     }).setView(this.DEFAULT_LATLNG, this.MARKER_ZOOM_LEVEL)
+    this.setMarker(latLng(this.DEFAULT_LATLNG))
 
     tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(this.map)
 
