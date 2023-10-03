@@ -1,4 +1,4 @@
-const BASE_URL = 'expressdonut.onrender.com'
+const BASE_URL = ''
 
 export const FOODS_URL = BASE_URL + '/api/foods'
 export const FOODS_TAGS_URL = FOODS_URL + '/tags'
