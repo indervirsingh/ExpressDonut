@@ -1,8 +1,8 @@
 # Express Donut
 
-## Hosted @
+## Demo Link
 
-expressdonut.onrender.com
+[Express Donut](expressdonut.onrender.com)
 
 TODO:
 
