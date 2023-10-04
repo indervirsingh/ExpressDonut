@@ -1,0 +1,16 @@
+<app-title title="Orders"></app-title>
+<div class="container" >
+    <div class="content" *ngIf="orders">
+        <div class="details" *ngFor="let order of orders">
+            <div><strong>Date</strong> {{order.createdAt | date: 'medium'}}</div>
+            <div><strong>Name</strong> {{order.name}}</div>
+            <div><strong>Address</strong> {{order.address}}</div>
+            <div><strong>Status</strong> {{order.status}}</div>
+            <div *ngIf="order.paymentId">
+                <strong>Payment ID</strong> {{order.paymentId}}
+                <div><strong>Tracking</strong><a routerLink="/track/{{order.id}}"> Click here</a></div>
+            </div>
+
+        </div>
+    </div>
+</div>
