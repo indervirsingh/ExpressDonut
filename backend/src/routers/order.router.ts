@@ -8,6 +8,13 @@ import auth from '../middlewares/auth.mid'
 const router = Router()
 router.use(auth)
 
+router.get('/', asyncHandler(
+    async (req, res) => {
+        const orders = await OrderModel.find({})
+        res.send(orders)
+    })
+)
+
 router.post('/create', asyncHandler(
     async(req: any, res: any) => {
         const requestOrder = req.body
