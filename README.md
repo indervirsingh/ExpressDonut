@@ -7,5 +7,5 @@
 TODO:
 
 - [x] implement Orders Page (displays all orders)
-- [ ] display Orders per User (not all total Orders)
+- [x] display Orders per User (not all total Orders)
 - [ ] CRUD api methods for foods data
