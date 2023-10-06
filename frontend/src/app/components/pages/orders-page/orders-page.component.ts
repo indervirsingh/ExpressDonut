@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
 import { Observable } from 'rxjs'
 import { OrderService } from 'src/app/services/order.service'
+import { UserService } from 'src/app/services/user.service'
 import { Order } from 'src/app/shared/models/order.model'
+import { User } from 'src/app/shared/models/user.model'
 
 @Component({
   selector: 'app-orders-page',
@@ -11,17 +12,21 @@ import { Order } from 'src/app/shared/models/order.model'
 })
 export class OrdersPageComponent implements OnInit {
 
-  orders: Order[] = []
+  userOrders: Order[] = []
+  user!: User
 
-  constructor(activatedRoute: ActivatedRoute, private orderService: OrderService) { 
-    let ordersObservable: Observable<Order[]>
-    ordersObservable = orderService.getAll()
-
-    ordersObservable.subscribe((serverOrders) => {
-      this.orders = serverOrders
-    })
+  constructor(private orderService: OrderService, private userService: UserService) {  
+    this.user = userService.currentUser
   }
   ngOnInit(): void {
+    this.orderService.getAll().subscribe({
+      next: (serverOrders) => {
+        this.userOrders = serverOrders.filter(order => {
+          return order.name.includes(this.user.name)
+        })
+
+      }
+    })
   }
 
 }

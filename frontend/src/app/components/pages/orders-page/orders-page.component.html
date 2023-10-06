@@ -1,7 +1,7 @@
 <app-title title="Orders"></app-title>
 <div class="container" >
-    <div class="content" *ngIf="orders">
-        <div class="details" *ngFor="let order of orders">
+    <div class="content" *ngIf="userOrders">
+        <div class="details" *ngFor="let order of userOrders">
             <div><strong>Date</strong> {{order.createdAt | date: 'medium'}}</div>
             <div><strong>Name</strong> {{order.name}}</div>
             <div><strong>Address</strong> {{order.address}}</div>
@@ -10,7 +10,7 @@
                 <strong>Payment ID</strong> {{order.paymentId}}
                 <div><strong>Tracking</strong><a routerLink="/track/{{order.id}}"> Click here</a></div>
             </div>
-
         </div>
     </div>
+    <h2 *ngIf="userOrders.length === 0 ">You have 0 Orders</h2>
 </div>
