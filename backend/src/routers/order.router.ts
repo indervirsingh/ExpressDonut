@@ -60,6 +60,7 @@ router.post('/pay', asyncHandler(
         order.paymentId = paymentId
         order.status = OrderStatus.PAYED
         await order.save()
+        res.send(order._id)
     })
 )
 
