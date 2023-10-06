@@ -63,7 +63,6 @@ export class CheckoutPageComponent implements OnInit {
       }
     })
 
-    console.log(this.order)
   }
 
 }
