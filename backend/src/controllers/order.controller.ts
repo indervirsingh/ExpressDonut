@@ -3,14 +3,14 @@ import { OrderModel } from '../models/order.model'
 import { OrderStatus } from '../constants/order_status'
 import { HTTP_BAD_REQUEST } from '../constants/http_status'
 
-function getOrders() {
+function getOrders(req: any, res: any) {
     asyncHandler( async (req, res) => {
         const orders = await OrderModel.find()
         res.send(orders)
     })
 }
 
-function getCurrentOrder() {
+function getCurrentOrder(req: any, res: any) {
     asyncHandler( async (req: any, res) => {
         const order = await getNewOrderForCurrentUser(req)
 
@@ -19,7 +19,7 @@ function getCurrentOrder() {
     })
 }
 
-function getOrder() {
+function getOrder(req: any, res: any) {
     asyncHandler( async (req, res) => {
         const orderId = req.params.id
         const order = await OrderModel.findById(orderId)
@@ -27,7 +27,7 @@ function getOrder() {
     })
 }
 
-function createOrder() {
+function createOrder(req: any, res: any) {
     asyncHandler( async (req: any, res: any) => {
         const requestOrder = req.body
 
@@ -48,7 +48,7 @@ function createOrder() {
     })
 }
 
-function pay() {
+function pay(req: any, res: any) {
     asyncHandler( async (req, res) => {
         const { paymentId } = req.body
         const order = await getNewOrderForCurrentUser(req)
