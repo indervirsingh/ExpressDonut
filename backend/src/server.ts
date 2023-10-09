@@ -4,9 +4,9 @@ dotenv.config()
 import path from 'path'
 import express from 'express'
 import cors from 'cors'
-import foodRouter from './routers/food.router'
-import userRouter from './routers/user.router'
-import orderRouter from './routers/order.router'
+import foodRouter from './routes/food.routes'
+import userRouter from './routes/user.routes'
+import orderRouter from './routes/order.routes'
 import { dbConnect } from './configs/database.config'
 
 dbConnect()
