@@ -4,43 +4,40 @@ import { User, UserModel } from '../models/user.model'
 import { HTTP_BAD_REQUEST } from '../constants/http_status'
 import bcrypt from 'bcryptjs'
 
-function login(req: any, res: any) {
-    asyncHandler( async (req, res) => {
-        const { email, password } = req.body
-        const user = await UserModel.findOne({ email })
-        if (user && (await bcrypt.compare(password, user.password))) {
-            res.send(generateTokenResponse(user))
-        } else {
-            res.status(HTTP_BAD_REQUEST).send("Username or Password is invalid!")
-        }
-    })
-}
+exports.login = asyncHandler( async (req, res) => {
+    const { email, password } = req.body
+    const user = await UserModel.findOne({ email })
+    if (user && (await bcrypt.compare(password, user.password))) {
+        res.send(generateTokenResponse(user))
+    } else {
+        res.status(HTTP_BAD_REQUEST).send("Username or Password is invalid!")
+    }
+})
 
-function register(req: any, res: any) {
-    asyncHandler( async (req: any, res: any) => {
-        
-        const { name, email, password, address } = req.body
-        const user = await UserModel.findOne({ email })
-        if (user && (await bcrypt.compare(password, user.password))) {
-            res.status(HTTP_BAD_REQUEST)
-            .send('User already exists, please login!')
-            return
-        }
-    
-        const encryptedPassword = await bcrypt.hash(password, 10)
-    
-        const newUser: User = {
-            name,
-            email: email.toLowerCase(),
-            password: encryptedPassword,
-            address,
-            isAdmin: false
-        }
-    
-        const dbUser = await UserModel.create(newUser)
-        res.send(generateTokenResponse(dbUser))
-    })
-}
+
+exports.register = asyncHandler( async (req: any, res: any) => {
+    const { name, email, password, address } = req.body
+    const user = await UserModel.findOne({ email })
+    if (user && (await bcrypt.compare(password, user.password))) {
+        res.status(HTTP_BAD_REQUEST)
+        .send('User already exists, please login!')
+        return
+    }
+
+    const encryptedPassword = await bcrypt.hash(password, 10)
+
+    const newUser: User = {
+        name,
+        email: email.toLowerCase(),
+        password: encryptedPassword,
+        address,
+        isAdmin: false
+    }
+
+    const dbUser = await UserModel.create(newUser)
+    res.send(generateTokenResponse(dbUser))
+})
+
 
 const generateTokenResponse = (user: any) => {
     const token = jwt.sign({
@@ -57,9 +54,4 @@ const generateTokenResponse = (user: any) => {
         isAdmin: user.isAdmin,
         token: token
     }
-}
-
-module.exports  = {
-    login,
-    register
 }

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-const { login, register } = require('../controllers/user.controller')
+const user_controller = require('../controllers/user.controller')
 const router = Router()
 
 // router.get('/seed', asyncHandler(
@@ -15,7 +15,7 @@ const router = Router()
 //     })
 // )
 
-router.post('/login', login)
-router.post('/register', register)
+router.post('/login', user_controller.login)
+router.post('/register', user_controller.register)
 
 export default router
