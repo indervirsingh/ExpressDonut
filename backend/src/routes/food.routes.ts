@@ -25,4 +25,4 @@ router.get('/tag/:tagName', food_controller.getTag)
   
 router.get('/:foodId', food_controller.getFood)
 
-export default router
+module.exports = router

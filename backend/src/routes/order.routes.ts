@@ -15,5 +15,5 @@ router.post('/pay', order_controller.pay)
 
 router.get('/track/:id', order_controller.getOrder)
 
-export default router
+module.exports = router
 

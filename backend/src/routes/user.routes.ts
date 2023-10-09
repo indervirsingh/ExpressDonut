@@ -18,4 +18,4 @@ const router = Router()
 router.post('/login', user_controller.login)
 router.post('/register', user_controller.register)
 
-export default router
+module.exports = router
