@@ -62,3 +62,11 @@ const getTag = ( asyncHandler(
         res.send(foods)
     })
 )
+
+module.exports = {
+    getFoods,
+    getFood,
+    getSearch,
+    getTags,
+    getTag
+}
