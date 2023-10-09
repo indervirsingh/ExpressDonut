@@ -21,8 +21,8 @@ router.get('/search/:searchTerm', getSearch)
 
 router.get('/tags', getTags)
 
-router.get("/tag/:tagName", getTag)
+router.get('/tag/:tagName', getTag)
   
-router.get("/:foodId", getFood)
+router.get('/:foodId', getFood)
 
 export default router
