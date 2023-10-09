@@ -10,4 +10,4 @@ TODO:
 - [x] display Orders per User (not all total Orders)
 - [x] implement DB controllers
 - [ ] CRUD api methods for foods data
-- [ ] implement confirmRegistration in backend register api
+- [ ] implement confirmRegistration in backend register api (JWT)
