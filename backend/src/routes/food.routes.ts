@@ -1,5 +1,5 @@
 import { Router } from 'express'
-const { getFoods, getFood, getSearch, getTags, getTag } = require('../controllers/food.controller')
+const food_controller = require('../controllers/food.controller')
 const router = Router()
 
 // router.get('/seed', asyncHandler(
@@ -15,14 +15,14 @@ const router = Router()
 //     })
 // )
 
-router.get('/', getFoods)
+router.get('/', food_controller.getFoods)
 
-router.get('/search/:searchTerm', getSearch)
+router.get('/search/:searchTerm', food_controller.getSearch)
 
-router.get('/tags', getTags)
+router.get('/tags', food_controller.getTags)
 
-router.get('/tag/:tagName', getTag)
+router.get('/tag/:tagName', food_controller.getTag)
   
-router.get('/:foodId', getFood)
+router.get('/:foodId', food_controller.getFood)
 
 export default router
