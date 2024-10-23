@@ -1,2 +1,5 @@
 # GitHub Dependabot updater
 /.github
+
+# VSCode 
+/.vscode
