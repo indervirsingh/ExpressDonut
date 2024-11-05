@@ -5,11 +5,9 @@
 
 version: 2
 updates:
-  # Maintain dependencies for node package modules
-  - package-ecosystem: "npm" 
-    directories: 
-      - "/frontend"
-      - "/backend"
+  # Maintain dependencies for frontend (without ignoring typescript)
+  - package-ecosystem: "npm"
+    directory: "/frontend"
     schedule:
       interval: "daily"
       time: "09:00"
@@ -17,3 +15,18 @@ updates:
       timezone: "America/Tijuana"
     # Raise pull requests for version updates to npm against the `stable` branch
     target-branch: "stable"
+
+  # Maintain dependencies for backend, ignoring typescript updates (uses specific version ">=4.9.3 and <5.2.0")
+  - package-ecosystem: "npm"
+    directory: "/backend"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      # Use America Standard Time (PDT)
+      timezone: "America/Tijuana"
+    # Raise pull requests for version updates to npm against the `stable` branch
+    target-branch: "stable"
+    ignore:
+      - dependency-name: "typescript"
+        #versions: ">=4.9.3 <5.2.0"
+
