@@ -15,6 +15,8 @@ updates:
       timezone: "America/Tijuana"
     # Raise pull requests for version updates to npm against the `stable` branch
     target-branch: "stable"
+    # Max number of PRs allowed
+    open-pull-requests-limit: 10
 
   # Maintain dependencies for backend, ignoring typescript updates (uses specific version ">=4.9.3 and <5.2.0")
   - package-ecosystem: "npm"
@@ -26,6 +28,8 @@ updates:
       timezone: "America/Tijuana"
     # Raise pull requests for version updates to npm against the `stable` branch
     target-branch: "stable"
+    # Max number of PRs allowed
+    open-pull-requests-limit: 10
     ignore:
       - dependency-name: "typescript"
         versions: ">=4.9.3 <5.2.0"
