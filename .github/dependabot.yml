@@ -24,7 +24,7 @@ updates:
         versions: [ "<17.0.0", ">=18.0.0" ]
 
   # Maintain dependencies for backend, ignoring typescript updates (uses specific version ">=4.9.3 and <5.2.0")
-  - package-ecosystem: "npm"
+  - package-ecosystem: "npm"`
     directory: "/backend"
     schedule:
       interval: "daily"
