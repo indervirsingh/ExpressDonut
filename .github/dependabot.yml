@@ -11,31 +11,27 @@ updates:
     schedule:
       interval: "daily"
       time: "09:00"
-      # Use America Standard Time (PDT)
-      timezone: "America/Tijuana"
-    # Raise pull requests for version updates to npm against the `stable` branch
-    target-branch: "stable"
-    # Max number of PRs allowed
-    open-pull-requests-limit: 10
-    ignore:
-      # Ignore updates outside of ^17.0.x for Angular packages
-      - dependency-name: "@angular/*"
-        # Limit updates to versions within ^17.0 [LTS ends 2025-05-15]
-        versions: [ "<17.0.0", ">=18.0.0" ]
+      timezone: "America/Tijuana"   # Use America Standard Time (PDT)
+    target-branch: "stable"   # Raise pull requests for version updates to npm against the `stable` branch
+    open-pull-requests-limit: 10    # Max number of PRs allowed
+    versioning-strategy: "increase"  # Keeps only minor or patch versions
+    allow:
+      - dependency-type: "direct"   # Only update direct dependencies
+    ignore:   # Ignore updates outside of ^17.3.x for Angular packages
+      - dependency-name: "@angular/*"   # Limit updates to versions within ^17.3.x [LTS ends 2025-05-15]
+        versions: [ "17.3.0" ]
 
-  # Maintain dependencies for backend, ignoring typescript updates (uses specific version ">=4.9.3 and <5.2.0")
-  - package-ecosystem: "npm"`
+  # Maintain dependencies for backend
+  - package-ecosystem: "npm"
     directory: "/backend"
     schedule:
       interval: "daily"
       time: "09:00"
-      # Use America Standard Time (PDT)
-      timezone: "America/Tijuana"
-    # Raise pull requests for version updates to npm against the `stable` branch
-    target-branch: "stable"
-    # Max number of PRs allowed
-    open-pull-requests-limit: 10
-    ignore:
+      timezone: "America/Tijuana"   # Use America Standard Time (PDT)
+    target-branch: "stable"   # Raise pull requests for version updates to npm against the `stable` branch
+    open-pull-requests-limit: 10    # Max number of PRs allowed
+    ignore:   # Ignore updates in range of [>=5.2.0 <5.5.0] LTS version compatible with Angular LTS v17.3.x
       - dependency-name: "typescript"
-        versions: ">=4.9.3 <5.2.0"
+        versions: ">=5.2.0 <5.5.0"
+
 
