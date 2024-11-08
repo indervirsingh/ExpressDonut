@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  # Maintain dependencies for frontend (without ignoring typescript)
+  # Maintain dependencies for frontend (npm, Angular LTS)
   - package-ecosystem: "npm"
     directory: "/frontend"
     schedule:
@@ -17,6 +17,11 @@ updates:
     target-branch: "stable"
     # Max number of PRs allowed
     open-pull-requests-limit: 10
+    ignore:
+      # Ignore updates outside of ^17.0.x for Angular packages
+      - dependency-name: "@angular/*"
+        # Limit updates to versions within ^17.0 [LTS ends 2025-05-15]
+        versions: [ "<17.0.0", ">=18.0.0" ]
 
   # Maintain dependencies for backend, ignoring typescript updates (uses specific version ">=4.9.3 and <5.2.0")
   - package-ecosystem: "npm"
