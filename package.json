@@ -2,7 +2,7 @@
   "name": "expressdonut",
   "version": "1.0.0",
   "engines": {
-    "node": ">=18 <19"
+    "node": "^18.13.0 || ^20.9.0"
   },
   "description": "Express Donut Website",
   "scripts": {
