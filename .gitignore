@@ -1,5 +1,5 @@
-# VSCode 
-/.vscode
-
 # IntelliJ IDEA
-/.idea
+.idea/
+
+# VSCode 
+.vscode/
