@@ -36,7 +36,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname,'public', 'index.html'))
 })
 
-const port = 5100
+const port = process.env.PORT || 5100
 app.listen(port, () => {
     console.log("Website served on http://localhost:" + port);
 
