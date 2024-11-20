@@ -5,7 +5,7 @@ import { Tag } from 'src/app/shared/models/tag.model'
 @Component({
   selector: 'app-tags',
   templateUrl: './tags.component.html',
-  styleUrls: ['./tags.component.css']
+  styleUrls: ['./tags.component.scss']
 })
 export class TagsComponent implements OnInit {
 

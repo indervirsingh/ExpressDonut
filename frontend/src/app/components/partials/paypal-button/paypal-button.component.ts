@@ -12,7 +12,7 @@ declare var paypal: any;
 @Component({
   selector: 'paypal-button',
   templateUrl: './paypal-button.component.html',
-  styleUrls: ['./paypal-button.component.css']
+  styleUrls: ['./paypal-button.component.scss']
 })
 export class PaypalButtonComponent implements OnInit {
   @Input()
