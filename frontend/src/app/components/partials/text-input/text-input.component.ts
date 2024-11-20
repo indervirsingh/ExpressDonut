@@ -4,7 +4,7 @@ import { AbstractControl, FormControl } from '@angular/forms'
 @Component({
   selector: 'text-input',
   templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.css']
+  styleUrls: ['./text-input.component.scss']
 })
 export class TextInputComponent implements OnInit {
 
