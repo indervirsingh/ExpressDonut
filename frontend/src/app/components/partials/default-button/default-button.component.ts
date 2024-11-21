@@ -3,7 +3,7 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 @Component({
   selector: 'default-button',
   templateUrl: './default-button.component.html',
-  styleUrls: ['./default-button.component.css']
+  styleUrls: ['./default-button.component.scss']
 })
 export class DefaultButtonComponent implements OnInit {
   @Input()
