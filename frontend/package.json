@@ -16,7 +16,7 @@
     "@angular/core": "^19.2.0",
     "@angular/forms": "^19.2.0",
     "@angular/platform-browser": "^19.2.0",
-    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
     "leaflet": "^1.9.4",
     "ngx-toastr": "^19.0.0",
@@ -38,6 +38,6 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": ">=5.2.0 <5.5.0"
+    "typescript": "^5.8.2"
   }
 }
