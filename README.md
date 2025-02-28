@@ -4,6 +4,9 @@
 
 [Express Donut](https://expressdonut.onrender.com)
 
+## Alternate Link
+[Express Donut](https://www.easy4indi.com)
+
 TODO:
 
 - [x] implement Orders Page (displays all orders)
