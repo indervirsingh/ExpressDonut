@@ -8,7 +8,8 @@ import { User } from 'src/app/shared/models/user.model'
 @Component({
   selector: 'app-orders-page',
   templateUrl: './orders-page.component.html',
-  styleUrls: ['./orders-page.component.scss']
+  styleUrls: ['./orders-page.component.scss'],
+  standalone: false
 })
 export class OrdersPageComponent implements OnInit {
 

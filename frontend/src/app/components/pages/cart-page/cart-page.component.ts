@@ -6,7 +6,8 @@ import { Cart } from 'src/app/shared/models/cart.model';
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
-  styleUrls: ['./cart-page.component.scss']
+  styleUrls: ['./cart-page.component.scss'],
+  standalone: false,
 })
 export class CartPageComponent implements OnInit {
   cart!: Cart

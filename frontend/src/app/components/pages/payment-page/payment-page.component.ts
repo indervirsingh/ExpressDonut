@@ -6,7 +6,8 @@ import { Order } from 'src/app/shared/models/order.model'
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
-  styleUrls: ['./payment-page.component.scss']
+  styleUrls: ['./payment-page.component.scss'],
+  standalone: false
 })
 export class PaymentPageComponent implements OnInit {
 
