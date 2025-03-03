@@ -6,7 +6,8 @@ import { Order } from 'src/app/shared/models/order.model'
 @Component({
   selector: 'app-order-track-page',
   templateUrl: './order-track-page.component.html',
-  styleUrls: ['./order-track-page.component.scss']
+  styleUrls: ['./order-track-page.component.scss'],
+  standalone: false
 })
 export class OrderTrackPageComponent implements OnInit {
 

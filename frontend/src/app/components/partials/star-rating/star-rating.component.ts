@@ -3,7 +3,8 @@ import { Component, Input } from '@angular/core'
 @Component({
   selector: 'star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.scss']
+  styleUrls: ['./star-rating.component.scss'],
+  standalone: false,
 })
 export class StarRatingComponent {
 
