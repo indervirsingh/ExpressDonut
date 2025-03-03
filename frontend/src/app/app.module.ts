@@ -34,18 +34,7 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
 import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component'
 
 @NgModule({
-  declarations: [],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
-      newestOnTop: false
-    }),
+  declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
@@ -71,10 +60,22 @@ import { OrdersPageComponent } from './components/pages/orders-page/orders-page.
     OrderTrackPageComponent,
     OrdersPageComponent
   ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      newestOnTop: false
+    })
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
-  bootstrap: []
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
