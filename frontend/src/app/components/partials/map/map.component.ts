@@ -6,7 +6,8 @@ import { Order } from 'src/app/shared/models/order.model'
 @Component({
   selector: 'map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
+  standalone: false
 })
 export class MapComponent implements OnChanges {
   @Input()

@@ -10,7 +10,8 @@ import { Order } from 'src/app/shared/models/order.model'
 @Component({
   selector: 'app-checkout-page',
   templateUrl: './checkout-page.component.html',
-  styleUrls: ['./checkout-page.component.scss']
+  styleUrls: ['./checkout-page.component.scss'],
+  standalone: false
 })
 export class CheckoutPageComponent implements OnInit {
 

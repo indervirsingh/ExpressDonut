@@ -8,7 +8,8 @@ import { PasswordsMatchValidator } from 'src/app/shared/validators/password_matc
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.scss']
+  styleUrls: ['./register-page.component.scss'],
+  standalone: false,
 })
 export class RegisterPageComponent implements OnInit {
 

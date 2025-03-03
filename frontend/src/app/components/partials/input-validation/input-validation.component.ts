@@ -10,7 +10,8 @@ const VALIDATORS_MESSAGES: any = {
 @Component({
   selector: 'input-validation',
   templateUrl: './input-validation.component.html',
-  styleUrls: ['./input-validation.component.scss']
+  styleUrls: ['./input-validation.component.scss'],
+  standalone: false,
 })
 export class InputValidationComponent implements OnInit, OnChanges {
 

@@ -7,7 +7,8 @@ import { CartService } from '../../../services/cart.service';
 @Component({
   selector: 'app-food-page',
   templateUrl: './food-page.component.html',
-  styleUrls: ['./food-page.component.scss']
+  styleUrls: ['./food-page.component.scss'],
+  standalone: false,
 })
 export class FoodPageComponent implements OnInit {
 
