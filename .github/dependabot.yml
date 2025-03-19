@@ -10,8 +10,8 @@ updates:
     directory: "/frontend"
     schedule:
       interval: "daily"
-      time: "09:00"
-      timezone: "America/Tijuana"   # Use America Standard Time (PDT)
+      time: "09:30"
+      timezone: "America/Los_Angeles"   # Use America Standard Time (PDT)
     target-branch: "stable"   # Raise pull requests for version updates to npm against the `stable` branch
     open-pull-requests-limit: 10    # Max number of PRs allowed
     versioning-strategy: "increase"  # Keeps only minor or patch versions
@@ -26,8 +26,8 @@ updates:
     directory: "/backend"
     schedule:
       interval: "daily"
-      time: "09:00"
-      timezone: "America/Tijuana"   # Use America Standard Time (PDT)
+      time: "09:30"
+      timezone: "America/Los_Angeles"   # Use America Standard Time (PDT)
     target-branch: "stable"   # Raise pull requests for version updates to npm against the `stable` branch
     open-pull-requests-limit: 10    # Max number of PRs allowed
     ignore:   # Ignore updates in range of [>=5.2.0 <5.5.0] LTS version compatible with Angular LTS v17.3.x
