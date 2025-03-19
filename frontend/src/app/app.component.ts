@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core'
   standalone: false,
 })
 export class AppComponent {
-  title = 'frontend'
+  title = 'frontend';
+
 }

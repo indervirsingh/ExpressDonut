@@ -33,4 +33,9 @@ export class HeaderComponent implements OnInit {
   get isAuth() {
     return this.user.token
   }
+
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+  }
+
 }
