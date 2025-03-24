@@ -52,9 +52,6 @@ jobs:
           # This is where you will need to introduce the Snyk API token created with your Snyk account
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      - name: Install Snyk CLI
-        run: npm install -g snyk
-
       - name: Authenticate with Snyk
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
         # Runs Snyk Code (SAST) analysis and uploads result into GitHub.
