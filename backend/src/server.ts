@@ -24,6 +24,7 @@ app.use(cors({
     credentials: true,
     origin: ['http://localhost:4200']
 }))
+app.set('trust proxy', 1);
 
 app.use(limiter);
 app.use('/api/foods', food_routes)
