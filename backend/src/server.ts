@@ -22,7 +22,9 @@ const limiter = rateLimit({
 app.use(express.json())
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:4200', 'https://expressdonut.onrender.com']
+    origin: ['http://localhost:4200', 'https://expressdonut.onrender.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }))
 app.set('trust proxy', 1);
 
