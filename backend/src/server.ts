@@ -20,10 +20,8 @@ const limiter = rateLimit({
 });
 
 app.use(express.json())
-app.use(cors({
-    credentials: true,
-    origin: ['http://localhost:4200']
-}))
+app.use(cors())
+app.set('trust proxy', 1);
 
 app.use(limiter);
 app.use('/api/foods', food_routes)
