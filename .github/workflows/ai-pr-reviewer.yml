@@ -1,4 +1,4 @@
-name: Code Review & Auto Approve
+name: CodeRabbitAI Code Review
 
 permissions:
   contents: read
@@ -8,6 +8,7 @@ on:
   pull_request:
   pull_request_review_comment:
     types: [created]
+  workflow_dispatch:  # 👈 Add this line to enable manual triggering
 
 concurrency:
   group:
@@ -30,7 +31,7 @@ jobs:
           review_simple_changes: false
           review_comment_lgtm: false
 
-      - name: Auto Approve PR
-        uses: hmarr/auto-approve-action@v3
-        with:
-          github-token: ${{ secrets.GH_TOKEN }}
+      # - name: Auto Approve PR
+      #   uses: hmarr/auto-approve-action@v3
+      #   with:
+      #     github-token: ${{ secrets.GH_TOKEN }}

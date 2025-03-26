@@ -1,0 +1,112 @@
+name: Manage Security Issues from Code Scanning
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch: # Allows manual trigger
+  push:
+    branches:
+      - main # Run on main branch updates
+
+permissions:
+  contents: read
+  security-events: read
+  issues: write
+
+jobs:
+  manage_security_issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Security Alerts
+        id: get_alerts
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+
+            // Fetch open code scanning alerts
+            const alerts = await github.request('GET /repos/{owner}/{repo}/code-scanning/alerts?per_page=100', {
+              owner,
+              repo
+            });
+
+            // Fetch existing open issues tagged with 'security'
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              labels: "security",
+              state: "open"
+            });
+
+            const issueMap = new Map();
+            issues.forEach(issue => {
+              const match = issue.body.match(/\*\*File:\*\* (.+)/);
+              if (match) {
+                issueMap.set(match[1], issue.number); // Map file path to issue number
+              }
+            });
+
+            for (const alert of alerts.data) {
+              const filePath = alert.most_recent_instance.location.path;
+              const issueTitle = `[SECURITY] ${alert.rule.description}`;
+              const issueBody = `**Description:** ${alert.rule.description}\n\n**Severity:** ${alert.rule.severity}\n\n**File:** ${filePath}\n\n**More Details:** ${alert.html_url}`;
+
+              if (!issueMap.has(filePath)) {
+                // Create a new issue if it doesn't exist
+                const issue = await github.rest.issues.create({
+                  owner,
+                  repo,
+                  title: issueTitle,
+                  body: issueBody,
+                  labels: ['security', 'code-scanning']
+                });
+                console.log(`Created issue #${issue.data.number} for ${filePath}`);
+              } else {
+                console.log(`Issue already exists for ${filePath}, skipping.`);
+              }
+            }
+
+      - name: Close Issues for Resolved Alerts
+        id: close_resolved
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+
+            // Fetch all security-labeled open issues
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              labels: "security",
+              state: "open"
+            });
+
+            // Fetch current open security alerts
+            const alerts = await github.request('GET /repos/{owner}/{repo}/code-scanning/alerts?per_page=100', {
+              owner,
+              repo
+            });
+
+            const openFilePaths = new Set(alerts.data.map(alert => alert.most_recent_instance.location.path));
+
+            for (const issue of issues) {
+              const match = issue.body.match(/\*\*File:\*\* (.+)/);
+              if (match && !openFilePaths.has(match[1])) {
+                await github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: issue.number,
+                  state: "closed",
+                });
+
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: issue.number,
+                  body: "✅ The related security issue has been resolved and is now closed."
+                });
+
+                console.log(`Closed issue #${issue.number} for ${match[1]}`);
+              }
+            }
