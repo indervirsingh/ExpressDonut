@@ -22,6 +22,7 @@ exports.getSearch = asyncHandler( async (req, res) => {
     res.set('Content-Type', 'application/json; charset=utf-8')
     res.send(foods)
 })
+function escapeRegex(string) { return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
 
 exports.getTags = asyncHandler( async (req, res) => {
