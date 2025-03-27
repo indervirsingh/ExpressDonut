@@ -20,6 +20,7 @@ exports.getCurrentOrder = asyncHandler( async (req: any, res) => {
 exports.getOrder = asyncHandler( async (req, res) => {
     const orderId = req.params.id
     const order = await OrderModel.findById(orderId)
+    res.set('content-type', 'application/json; charset=utf-8')
     res.send(order)
 })
 
@@ -55,6 +56,7 @@ exports.pay = asyncHandler( async (req, res) => {
     order.paymentId = paymentId
     order.status = OrderStatus.PAYED
     await order.save()
+    res.set('content-type', 'application/json; charset=utf-8')
     res.send(order._id)
 })
 
