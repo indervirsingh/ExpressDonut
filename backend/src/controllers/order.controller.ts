@@ -56,7 +56,8 @@ exports.pay = asyncHandler( async (req, res) => {
     order.paymentId = paymentId
     order.status = OrderStatus.PAYED
     await order.save()
-    res.send(order._id)
+    res.headers['content-type'] = 'application/json; charset=utf-8'
+    res.json(order._id)
 })
 
 
