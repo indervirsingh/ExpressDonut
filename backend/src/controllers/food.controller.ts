@@ -15,11 +15,12 @@ exports.getFood = asyncHandler( async (req, res) => {
 
 
 exports.getSearch = asyncHandler( async (req, res) => {
-    const searchRegex = new RegExp(req.params.searchTerm, 'i')
+    const searchRegex = new RegExp(escapeRegex(req.params.searchTerm), 'i')
     const foods = await FoodModel.find({ name: {$regex: searchRegex }})
     res.headers['content-type'] = 'application/json; charset=utf-8';
     res.send(foods)
 })
+function escapeRegex(string) { return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
 
 exports.getTags = asyncHandler( async (req, res) => {
