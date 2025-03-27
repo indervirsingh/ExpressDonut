@@ -28,7 +28,7 @@ exports.getOrder = asyncHandler( async (req, res) => {
 exports.createOrder = asyncHandler( async (req: any, res: any) => {
     const requestOrder = req.body
 
-    if (requestOrder.items.length <= 0) {
+    if (!Array.isArray(requestOrder.items) || requestOrder.items.length <= 0) {
         res.status(HTTP_BAD_REQUEST).send('Cart is Empty')
         return
     }
