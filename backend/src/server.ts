@@ -32,7 +32,6 @@ app.use('/api/orders', order_routes)
 
 
 app.use(express.static('public'));
-app.use(helmet())
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname,'public', 'index.html'))
 })
