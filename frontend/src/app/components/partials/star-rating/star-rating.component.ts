@@ -18,7 +18,7 @@ export class StarRatingComponent {
     return {
       'width.rem': this.size,
       'height.rem': this.size,
-      'marginRight.rem': this.size / 6,
+      'marginRight.rem': Number(this.size) / 6,
     }
   }
 

@@ -3,6 +3,7 @@ dotenv.config()
 
 import path from 'path'
 import express from 'express'
+import helmet from 'helmet'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 const food_routes = require('./routes/food.routes')
@@ -20,6 +21,7 @@ const limiter = rateLimit({
 });
 
 app.use(express.json())
+app.use(helmet())
 app.use(cors())
 app.set('trust proxy', 1);
 

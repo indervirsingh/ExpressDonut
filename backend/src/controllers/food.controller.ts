@@ -9,15 +9,20 @@ exports.getFoods = asyncHandler( async (req, res) => {
 exports.getFood = asyncHandler( async (req, res) => {
     const foodId = req.params.foodId
     const food = await FoodModel.findById(foodId)
+    res.set('Content-Type', 'application/json; charset=utf-8')
     res.send(food)
 })
 
 
 exports.getSearch = asyncHandler( async (req, res) => {
-    const searchRegex = new RegExp(req.params.searchTerm, 'i')
+    const searchTerm = String(req.params.searchTerm)
+    const escapedSearchTerm = escapeRegex(searchTerm)
+    const searchRegex = new RegExp(escapedSearchTerm, 'i')
     const foods = await FoodModel.find({ name: {$regex: searchRegex }})
+    res.set('Content-Type', 'application/json; charset=utf-8')
     res.send(foods)
 })
+function escapeRegex(string: string): string { return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
 
 exports.getTags = asyncHandler( async (req, res) => {
@@ -53,5 +58,6 @@ exports.getTags = asyncHandler( async (req, res) => {
 
 exports.getTag = asyncHandler( async (req, res) => {
     const foods = await FoodModel.find({tags: req.params.tagName })
+    res.set('Content-Type', 'application/json; charset=utf-8')
     res.send(foods)
 })
