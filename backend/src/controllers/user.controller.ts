@@ -28,7 +28,7 @@ exports.register = asyncHandler( async (req: any, res: any) => {
 
     const newUser: User = {
         name,
-        email: email.toLowerCase(),
+        email: String(email).toLowerCase(),
         password: encryptedPassword,
         address,
         isAdmin: false

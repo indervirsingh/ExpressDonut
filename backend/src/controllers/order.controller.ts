@@ -20,6 +20,7 @@ exports.getCurrentOrder = asyncHandler( async (req: any, res) => {
 exports.getOrder = asyncHandler( async (req, res) => {
     const orderId = req.params.id
     const order = await OrderModel.findById(orderId)
+    res.headers['content-type'] = 'application/json; charset=utf-8'
     res.send(order)
 })
 
@@ -27,7 +28,7 @@ exports.getOrder = asyncHandler( async (req, res) => {
 exports.createOrder = asyncHandler( async (req: any, res: any) => {
     const requestOrder = req.body
 
-    if (requestOrder.items.length <= 0) {
+    if (!Array.isArray(requestOrder.items) || requestOrder.items.length <= 0) {
         res.status(HTTP_BAD_REQUEST).send('Cart is Empty')
         return
     }
@@ -55,7 +56,8 @@ exports.pay = asyncHandler( async (req, res) => {
     order.paymentId = paymentId
     order.status = OrderStatus.PAYED
     await order.save()
-    res.send(order._id)
+    res.headers['content-type'] = 'application/json; charset=utf-8'
+    res.json(order._id)
 })
 
 

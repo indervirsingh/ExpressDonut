@@ -9,6 +9,7 @@
     "start": "cd backend/built && node server.js",
     "prebuild": "cd backend && npm run build",
     "build": "cd frontend && npm run build",
+    "build-dev": "cd frontend && npm run build-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Indervir Singh"
