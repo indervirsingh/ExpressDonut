@@ -9,6 +9,7 @@ exports.getFoods = asyncHandler( async (req, res) => {
 exports.getFood = asyncHandler( async (req, res) => {
     const foodId = req.params.foodId
     const food = await FoodModel.findById(foodId)
+    res.headers['content-type'] = 'application/json; charset=utf-8';
     res.send(food)
 })
 
@@ -16,6 +17,7 @@ exports.getFood = asyncHandler( async (req, res) => {
 exports.getSearch = asyncHandler( async (req, res) => {
     const searchRegex = new RegExp(req.params.searchTerm, 'i')
     const foods = await FoodModel.find({ name: {$regex: searchRegex }})
+    res.headers['content-type'] = 'application/json; charset=utf-8';
     res.send(foods)
 })
 
@@ -53,5 +55,6 @@ exports.getTags = asyncHandler( async (req, res) => {
 
 exports.getTag = asyncHandler( async (req, res) => {
     const foods = await FoodModel.find({tags: req.params.tagName })
+    res.headers['content-type'] = 'application/json; charset=utf-8'
     res.send(foods)
 })

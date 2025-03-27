@@ -20,6 +20,7 @@ exports.getCurrentOrder = asyncHandler( async (req: any, res) => {
 exports.getOrder = asyncHandler( async (req, res) => {
     const orderId = req.params.id
     const order = await OrderModel.findById(orderId)
+    res.headers['content-type'] = 'application/json; charset=utf-8'
     res.send(order)
 })
 
