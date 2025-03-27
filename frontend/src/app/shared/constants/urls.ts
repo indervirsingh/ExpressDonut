@@ -1,6 +1,7 @@
 import { environment } from "src/environments/environment"
 
-const BASE_URL = `https://expressdonut.onrender.com`
+const BASE_URL = environment.production ? environment.apiUrl : `http://localhost:${environment.apiPort}`
+// const BASE_URL = `https://expressdonut.onrender.com`
 // const BASE_URL = environment.production? '' : `http://localhost:${environment.apiPort}`
 
 export const FOODS_URL = BASE_URL + '/api/foods'
