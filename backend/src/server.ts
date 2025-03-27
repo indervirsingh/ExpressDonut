@@ -3,6 +3,7 @@ dotenv.config()
 
 import path from 'path'
 import express from 'express'
+import helmet from 'helmet'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 const food_routes = require('./routes/food.routes')
@@ -30,6 +31,7 @@ app.use('/api/orders', order_routes)
 
 
 app.use(express.static('public'));
+app.use(helmet())
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname,'public', 'index.html'))
 })
