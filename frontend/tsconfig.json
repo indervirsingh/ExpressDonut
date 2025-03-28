@@ -14,13 +14,11 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
     "lib": [
       "ES2022",
       "dom"
