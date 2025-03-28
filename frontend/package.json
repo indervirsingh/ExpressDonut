@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm install --force && ng build --configuration production",
-    "build-dev": "npm install --force && ng build --configuration development",
+    "build": "bun install --force && ng build --configuration production",
+    "build-dev": "bun install --force && ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
