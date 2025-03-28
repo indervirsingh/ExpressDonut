@@ -6,10 +6,10 @@
   },
   "description": "Express Donut Website",
   "scripts": {
-    "start": "cd backend/built && node server.js",
-    "prebuild": "cd backend && npm run build",
-    "build": "cd frontend && npm run build",
-    "build-dev": "cd frontend && npm run build-dev",
+    "start": "cd backend/built && bun server.js",
+    "prebuild": "cd backend && bun run build",
+    "build": "cd frontend && bun run build",
+    "build-dev": "cd frontend && bun run build-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Indervir Singh"

@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": true,
     "outDir": "./built",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "ES2022",
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "noEmit": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"]
 }
