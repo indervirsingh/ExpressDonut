@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "bun run src/server.ts",
-    "build": "bun run tsc",
+    "build": "npm install && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
