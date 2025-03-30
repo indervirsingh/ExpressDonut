@@ -4,6 +4,7 @@ export class Food {
     price!: number
     favorite!: boolean
     stars!: number
-    imageUrl!: string
+    path!: string
+    image_url!: string
     tags?: string[]
 }

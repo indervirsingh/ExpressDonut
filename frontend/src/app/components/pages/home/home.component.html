@@ -7,7 +7,7 @@
 <ul>
     <li *ngFor="let food of foods">
         <a routerLink="/food/{{food.id}}">
-            <img [src]="food.imageUrl" [alt]="food.name"/>
+            <img [src]="food.image_url" [alt]="food.name"/>
             <div class="content">
                 <div class="name">
                     {{food.name}}

@@ -5,6 +5,7 @@ import path from 'path'
 import express from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 import rateLimit from 'express-rate-limit'
 const food_routes = require('./routes/food.routes')
 const user_routes = require('./routes/user.routes')
@@ -21,8 +22,14 @@ const limiter = rateLimit({
 });
 
 app.use(express.json())
-app.use(helmet())
 app.use(cors())
+app.use(expressCspHeader({
+    directives: {
+        'default-src': [expressCspHeader.NONE],
+        'img-src': [expressCspHeader.SELF],
+    }
+}));
+// app.use(helmet())
 app.set('trust proxy', 1);
 
 app.use(limiter);
