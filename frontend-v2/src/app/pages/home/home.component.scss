@@ -1,0 +1,96 @@
+@import 'primeng/resources/themes/lara-light-blue/theme'; // Match your theme
+
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 2rem 0;
+  background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+}
+
+.search-filter-container {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+
+  .search-input {
+    flex: 1;
+    max-width: 400px;
+  }
+}
+
+.donut-grid {
+  display: grid;
+  gap: 2rem;
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.p-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .p-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+
+  .donut-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .price-tag {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2b6cb0;
+  }
+
+  .favorite-button {
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #e53e3e !important;
+    }
+  }
+}
+
+.loading-overlay {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.error-state {
+  text-align: center;
+  padding: 4rem 1rem;
+
+  .error-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .retry-button {
+    margin-top: 1.5rem;
+  }
+}
