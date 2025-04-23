@@ -4,6 +4,7 @@ import { Dashboard } from './app/pages/dashboard/dashboard';
 import { Documentation } from './app/pages/documentation/documentation';
 import { Landing } from './app/pages/landing/landing';
 import { NotfoundComponent } from './app/pages/notfound/notfound';
+import { HomeComponent } from './app/pages/home/home.component';
 
 // Define the main application routes using the AppLayout structure
 export const appRoutes: Routes = [
@@ -11,8 +12,7 @@ export const appRoutes: Routes = [
         path: '',
         component: AppLayout, // Main layout for authenticated/logged-in area
         children: [
-            // Default route within the layout redirects to dashboard (or adjust as needed)
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: '', component: HomeComponent, pathMatch: 'full' }, // Homepage
             { path: 'dashboard', component: Dashboard }, // Example: Load Dashboard directly
             // Example: Lazy load feature modules
             // { path: 'uikit', loadChildren: () => import('./app/pages/uikit/uikit.routes') },
@@ -22,8 +22,8 @@ export const appRoutes: Routes = [
     },
     // Standalone pages outside the main layout
     { path: 'landing', component: Landing },
-    // { path: 'auth', loadChildren: () => import('./app/pages/auth/auth.routes') }, // Example: Lazy load auth routes
+    // { path: 'auth', loadChildren: () => import('./pages/auth/auth.routes') },
     { path: 'notfound', component: NotfoundComponent },
     // Wildcard route redirects to the 'notfound' page
-    { path: '**', redirectTo: '/notfound' }
+    { path: '**', redirectTo: '' }
 ];

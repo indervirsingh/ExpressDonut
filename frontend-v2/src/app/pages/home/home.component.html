@@ -1,0 +1,52 @@
+<div class="p-4">
+  <!-- Inside the *ngFor loop for foods -->
+  <div *ngIf="foods$ | async as foods; else loadingOrError" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <!-- Iterate over the unwrapped 'foods' array -->
+    <p-card *ngFor="let food of foods" [header]="food.name">
+      <div class="relative">
+        <img [src]="food.imageUrl" [alt]="food.name" class="w-full h-48 object-cover mb-4">
+        <!-- START: Replace p-rating -->
+        <div class="absolute top-2 right-2 bg-white/80 p-1 rounded flex items-center text-yellow-500">
+          <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
+            <i [class]="i <= food.stars ? 'pi pi-star-fill mr-1' : 'pi pi-star mr-1'"></i>
+          </ng-container>
+          <span class="ml-1 text-xs text-gray-700">({{ food.stars }})</span>
+        </div>
+        <!-- END: Replace p-rating -->
+      </div>
+      <div class="flex justify-between items-start mt-4">
+        <div>
+          <h3 class="text-xl font-semibold">{{ food.name }}</h3>
+          <div class="flex gap-2 mt-2">
+            <p-tag
+              *ngFor="let tag of food.tags"
+              [value]="tag"
+              styleClass="mr-2"
+            ></p-tag>
+          </div>
+        </div>
+        <p-button
+          icon="pi pi-heart"
+          [text]="true"
+          [severity]="food.favorite ? 'danger' : 'secondary'"
+          (click)="toggleFavorite(food)"
+        ></p-button>
+      </div>
+    </p-card>
+  </div>
+
+  <!-- Template for loading or error state -->
+  <ng-template #loadingOrError>
+    <!-- Add your loading spinner or error message display here -->
+    <div *ngIf="!errorMessage; else errorState" class="flex justify-center p-8">
+       <p-progressSpinner></p-progressSpinner>
+    </div>
+    <ng-template #errorState>
+       <!-- Display error message if applicable -->
+       <div class="text-center p-8 text-red-500">
+          {{ errorMessage }}
+       </div>
+    </ng-template>
+  </ng-template>
+
+</div>
