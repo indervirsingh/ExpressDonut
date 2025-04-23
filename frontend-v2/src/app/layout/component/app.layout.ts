@@ -1,5 +1,5 @@
-import { Component, Renderer2, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Renderer2, ViewChild, OnDestroy, Inject, PLATFORM_ID, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { AppTopbar } from './app.topbar';
@@ -23,10 +23,12 @@ import { LayoutService } from '../service/layout.service';
         <div class="layout-mask animate-fadein"></div>
     </div> `
 })
-export class AppLayout {
-    overlayMenuOpenSubscription: Subscription;
+export class AppLayout implements OnInit, OnDestroy {
+    overlayMenuOpenSubscription: Subscription | undefined;
 
-    menuOutsideClickListener: any;
+    menuOutsideClickListener: (() => void) | null = null;
+
+    routerSubscription: Subscription | undefined;
 
     @ViewChild(AppSidebar) appSidebar!: AppSidebar;
 
@@ -35,28 +37,36 @@ export class AppLayout {
     constructor(
         public layoutService: LayoutService,
         public renderer: Renderer2,
-        public router: Router
-    ) {
-        this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
-            if (!this.menuOutsideClickListener) {
-                this.menuOutsideClickListener = this.renderer.listen('document', 'click', (event) => {
-                    if (this.isOutsideClicked(event)) {
-                        this.hideMenu();
-                    }
-                });
-            }
+        public router: Router,
+        @Inject(PLATFORM_ID) private platformId: Object
+    ) {}
 
-            if (this.layoutService.layoutState().staticMenuMobileActive) {
-                this.blockBodyScroll();
-            }
-        });
+    ngOnInit() {
+        if (isPlatformBrowser(this.platformId)) {
+            this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
+                if (!this.menuOutsideClickListener) {
+                    this.menuOutsideClickListener = this.renderer.listen('document', 'click', (event) => {
+                        if (this.isOutsideClicked(event)) {
+                            this.hideMenu();
+                        }
+                    });
+                }
 
-        this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-            this.hideMenu();
-        });
+                if (this.layoutService.layoutState().staticMenuMobileActive) {
+                    this.blockBodyScroll();
+                }
+            });
+
+            this.routerSubscription = this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+                this.hideMenu();
+            });
+        }
     }
 
-    isOutsideClicked(event: MouseEvent) {
+    isOutsideClicked(event: MouseEvent): boolean {
+        if (!isPlatformBrowser(this.platformId)) {
+            return false;
+        }
         const sidebarEl = document.querySelector('.layout-sidebar');
         const topbarEl = document.querySelector('.layout-menu-button');
         const eventTarget = event.target as Node;
@@ -66,26 +76,25 @@ export class AppLayout {
 
     hideMenu() {
         this.layoutService.layoutState.update((prev) => ({ ...prev, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
-        if (this.menuOutsideClickListener) {
-            this.menuOutsideClickListener();
-            this.menuOutsideClickListener = null;
+
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.menuOutsideClickListener) {
+                this.menuOutsideClickListener();
+                this.menuOutsideClickListener = null;
+            }
+            this.unblockBodyScroll();
         }
-        this.unblockBodyScroll();
     }
 
     blockBodyScroll(): void {
-        if (document.body.classList) {
+        if (isPlatformBrowser(this.platformId) && document.body.classList) {
             document.body.classList.add('blocked-scroll');
-        } else {
-            document.body.className += ' blocked-scroll';
         }
     }
 
     unblockBodyScroll(): void {
-        if (document.body.classList) {
+        if (isPlatformBrowser(this.platformId) && document.body.classList) {
             document.body.classList.remove('blocked-scroll');
-        } else {
-            document.body.className = document.body.className.replace(new RegExp('(^|\\b)' + 'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
         }
     }
 
@@ -103,9 +112,15 @@ export class AppLayout {
         if (this.overlayMenuOpenSubscription) {
             this.overlayMenuOpenSubscription.unsubscribe();
         }
+        if (this.routerSubscription) {
+            this.routerSubscription.unsubscribe();
+        }
 
-        if (this.menuOutsideClickListener) {
-            this.menuOutsideClickListener();
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.menuOutsideClickListener) {
+                this.menuOutsideClickListener();
+                this.menuOutsideClickListener = null;
+            }
         }
     }
 }

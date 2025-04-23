@@ -1,12 +1,20 @@
 import { Injectable, effect, signal, computed } from '@angular/core';
 import { Subject } from 'rxjs';
 
+export interface PrimaryColor {
+    name: string;
+    palette: {
+        [key: string]: string;
+    };
+}
+
 export interface layoutConfig {
     preset?: string;
     primary?: string;
     surface?: string | undefined | null;
     darkTheme?: boolean;
     menuMode?: string;
+    primaryColors: PrimaryColor[];
 }
 
 interface LayoutState {
@@ -31,7 +39,11 @@ export class LayoutService {
         primary: 'emerald',
         surface: null,
         darkTheme: false,
-        menuMode: 'static'
+        menuMode: 'static',
+        primaryColors: [
+            { name: 'indigo', palette: { /* ... indigo palette ... */ } },
+            { name: 'blue', palette: { /* ... blue palette ... */ } },
+        ]
     };
 
     _state: LayoutState = {
