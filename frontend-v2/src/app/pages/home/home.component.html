@@ -1,52 +1,201 @@
-<div class="p-4">
-  <!-- Inside the *ngFor loop for foods -->
-  <div *ngIf="foods$ | async as foods; else loadingOrError" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <!-- Iterate over the unwrapped 'foods' array -->
-    <p-card *ngFor="let food of foods" [header]="food.name">
-      <div class="relative">
-        <img [src]="food.imageUrl" [alt]="food.name" class="w-full h-48 object-cover mb-4">
-        <!-- START: Replace p-rating -->
-        <div class="absolute top-2 right-2 bg-white/80 p-1 rounded flex items-center text-yellow-500">
-          <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
-            <i [class]="i <= food.stars ? 'pi pi-star-fill mr-1' : 'pi pi-star mr-1'"></i>
-          </ng-container>
-          <span class="ml-1 text-xs text-gray-700">({{ food.stars }})</span>
-        </div>
-        <!-- END: Replace p-rating -->
+<div class="flex flex-col md:flex-row global-px">
+  <!-- Sidebar with Promos and Filters - Collapsible on Mobile -->
+  <section class="w-full md:w-1/4 md:flex-none py-5 md:pr-6 border-r-0 md:border-r md:border-surface-200 dark:md:border-surface-700">
+      <!-- Mobile Filter Toggle -->
+      <div class="md:hidden mb-4">
+          <p-button 
+              [label]="'Filters & Promos ' + (showFilters ? '▲' : '▼')"
+              styleClass="w-full justify-between p-button-secondary p-button-outlined"
+              (onClick)="toggleFilters()">
+          </p-button>
       </div>
-      <div class="flex justify-between items-start mt-4">
-        <div>
-          <h3 class="text-xl font-semibold">{{ food.name }}</h3>
-          <div class="flex gap-2 mt-2">
-            <p-tag
-              *ngFor="let tag of food.tags"
-              [value]="tag"
-              styleClass="mr-2"
-            ></p-tag>
+      
+      <div [ngClass]="{'hidden': !showFilters}" class="md:block transition-all duration-300">
+          <div class="promo-section">
+              <h2 class="font-bold text-2xl mb-3 text-surface-900 dark:text-surface-0">Promo Today</h2>
+              <p class="text-center mb-5 text-surface-600 dark:text-surface-300">
+                  Coupons will be updated every week.
+                  <br />
+                  Check them out!
+              </p>
+              
+              <!-- Promo Cards -->
+              <div class="promo-cards flex flex-col gap-4">
+                  <p-card styleClass="border-left-3 border-primary shadow-sm hover:shadow-md transition-shadow">
+                      <div class="flex flex-col gap-1">
+                          <h3 class="font-bold text-lg text-primary">15% OFF</h3>
+                          <p class="text-sm text-surface-600 dark:text-surface-300">Use code: WELCOME15</p>
+                      </div>
+                  </p-card>
+                  <p-card styleClass="border-left-3 border-primary shadow-sm hover:shadow-md transition-shadow">
+                      <div class="flex flex-col gap-1">
+                          <h3 class="font-bold text-lg text-primary">Free Delivery</h3>
+                          <p class="text-sm text-surface-600 dark:text-surface-300">On orders over $25</p>
+                      </div>
+                  </p-card>
+              </div>
           </div>
-        </div>
-        <p-button
-          icon="pi pi-heart"
-          [text]="true"
-          [severity]="food.favorite ? 'danger' : 'secondary'"
-          (click)="toggleFavorite(food)"
-        ></p-button>
+          
+
+          <!-- Price Range Filter -->
+          <p-divider></p-divider>
+          <div class="price-section">
+              <h3 class="font-bold text-xl mb-3 text-surface-900 dark:text-surface-0">Price Range</h3>
+              <div class="price-range-container">
+                  <div class="price-inputs">
+                      <p-inputNumber class="price-input" [showButtons]="true" [min]="0" [step]="1" [placeholder]="'Min'" [(ngModel)]="minPrice" [allowEmpty]="true" mode="currency" currency="USD"></p-inputNumber>
+                      <span class="price-separator mx-2">to</span>
+                      <p-inputNumber class="price-input" [showButtons]="true" [min]="0" [step]="1" [placeholder]="'Max'" [(ngModel)]="maxPrice" [allowEmpty]="true" mode="currency" currency="USD"></p-inputNumber>
+                  </div>
+                  <p-button label="Apply" (click)="applyPriceFilter()" class="price-apply-btn"></p-button>
+              </div>
+          </div>
+          
+          
+          <!-- Categories Filter -->
+          <p-divider></p-divider>
+          <div class="categories-section">
+              <h3 class="font-bold text-xl mb-3 text-surface-900 dark:text-surface-0">Categories</h3>
+              <ul class="list-none flex flex-col gap-2">
+                  <li *ngFor="let tag of tags" class="tag-item">
+                      <a routerLink="/tag/{{tag.name}}" 
+                         class="flex items-center gap-2 p-2 hover:bg-surface-100 dark:hover:bg-surface-700 rounded transition-colors text-surface-700 dark:text-surface-300 hover:text-primary dark:hover:text-primary">
+                          <span class="w-2 h-2 rounded-full bg-primary"></span>
+                          <span>{{tag.name}} <span class="text-xs text-surface-500 dark:text-surface-400">({{tag.count}})</span></span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+          
       </div>
-    </p-card>
-  </div>
+  </section>
+  
+  <!-- Products Gallery -->
+  <section class="w-full md:w-3/4 md:flex-auto flex flex-col md:pl-6 py-5">
+      <!-- Header with Search and Sort -->
+      <div class="flex flex-col mb-6">
+          <h1 class="font-bold text-3xl mb-4 text-surface-900 dark:text-surface-0">Our Products</h1>
+          <div class="flex flex-col sm:flex-row gap-3">
+              <!-- Search input with fixed styling -->
+              <div class="search-container relative flex-grow">
+                  <span class="p-input-icon-left w-full block">
+                      <i class="pi pi-search"></i>
+                      <input 
+                          type="text" 
+                          pInputText 
+                          class="w-full"
+                          placeholder="Search products..." 
+                          #searchInput
+                          [value]="searchTerm"
+                          (keyup.enter)="search(searchInput.value)"
+                      />
+                  </span>
+                  <button 
+                      *ngIf="searchTerm"
+                      pButton 
+                      icon="pi pi-times" 
+                      class="p-button-rounded p-button-text p-button-sm clear-btn"
+                      (click)="clearSearch()">
+                  </button>
+              </div>
+              
+              <!-- Sort dropdown with fixed styling -->
+              <div class="sort-container">
+                  <p-dropdown 
+                      [options]="sortOptions" 
+                      [(ngModel)]="selectedSortOption" 
+                      placeholder="Sort By"
+                      (onChange)="sortProducts($event)"
+                      styleClass="w-full">
+                  </p-dropdown>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Search Results Info -->
+      <div *ngIf="searchTerm" class="mb-4 text-surface-600 dark:text-surface-300 flex items-center">
+          <i class="pi pi-info-circle mr-2"></i>
+          <p>Found {{allFoods.length}} results for "{{searchTerm}}"</p>
+      </div>
+      
+      <!-- Products Grid -->
+      <div *ngIf="foods.length === 0 && !searchTerm" class="text-center py-10">
+          <i class="pi pi-spin pi-spinner text-6xl text-surface-300 dark:text-surface-700"></i>
+          <p class="text-lg mt-4 text-surface-600 dark:text-surface-300">Loading products...</p>
+      </div>
 
-  <!-- Template for loading or error state -->
-  <ng-template #loadingOrError>
-    <!-- Add your loading spinner or error message display here -->
-    <div *ngIf="!errorMessage; else errorState" class="flex justify-center p-8">
-       <p-progressSpinner></p-progressSpinner>
-    </div>
-    <ng-template #errorState>
-       <!-- Display error message if applicable -->
-       <div class="text-center p-8 text-red-500">
-          {{ errorMessage }}
-       </div>
-    </ng-template>
-  </ng-template>
+      <div *ngIf="foods.length === 0 && searchTerm" class="text-center py-10">
+          <i class="pi pi-search text-6xl text-surface-300 dark:text-surface-700"></i>
+          <p class="text-lg mt-4 text-surface-600 dark:text-surface-300">No products found matching "{{searchTerm}}"</p>
+          <p-button 
+              label="Clear Search" 
+              icon="pi pi-times" 
+              styleClass="mt-4 p-button-outlined"
+              (onClick)="clearSearch()">
+          </p-button>
+      </div>
 
+      <div *ngIf="foods.length > 0" class="grid">
+          <div *ngFor="let food of foods" class="col-12 sm:col-6 lg:col-4 xl:col-3 p-2">
+              <p-card styleClass="product-card h-full surface-card shadow-sm hover:shadow-lg transition-shadow duration-300">
+                  <ng-template pTemplate="header">
+                      <div class="relative overflow-hidden rounded-t-lg">
+                          <a routerLink="/products/{{food.name}}">
+                              <img [src]="food.image_url" [alt]="food.name" class="product-image w-full h-48 object-cover transform hover:scale-105 transition-transform duration-300" />
+                          </a>
+                          <span class="absolute top-2 right-2 bg-surface-0 dark:bg-surface-800 bg-opacity-70 dark:bg-opacity-70 rounded-full p-1 cursor-pointer hover:bg-primary hover:bg-opacity-20 transition-colors">
+                              <i class="pi" 
+                                 [ngClass]="{'pi-heart-fill text-red-500': food.favorite, 'pi-heart text-surface-500': !food.favorite}">
+                              </i>
+                          </span>
+                      </div>
+                  </ng-template>
+                  
+                  <ng-template pTemplate="title">
+                      <a routerLink="/products/{{food.name}}" class="text-surface-900 dark:text-surface-100 hover:text-primary dark:hover:text-primary no-underline">
+                          <div class="font-medium text-lg text-ellipsis overflow-hidden">
+                              {{food.name}}
+                          </div>
+                      </a>
+                  </ng-template>
+                  
+                  <ng-template pTemplate="subtitle">
+                      <div class="flex items-center gap-1">
+                          <i class="pi pi-star-fill text-yellow-500 text-sm"></i>
+                          <i class="pi pi-star-fill text-yellow-500 text-sm"></i>
+                          <i class="pi pi-star-fill text-yellow-500 text-sm"></i>
+                          <i class="pi pi-star-fill text-yellow-500 text-sm"></i>
+                          <i class="pi pi-star text-yellow-500 text-sm"></i>
+                          <span class="text-surface-500 dark:text-surface-400 text-xs ml-1">(4.5)</span>
+                      </div>
+                  </ng-template>
+                  
+                  <ng-template pTemplate="content">
+                      <div class="flex justify-between items-center mt-2">
+                          <div class="price text-lg font-medium text-surface-900 dark:text-surface-100">
+                              {{food.price | currency}}
+                          </div>
+                          <p-button 
+                              icon="pi pi-shopping-cart" 
+                              label="Add"
+                              styleClass="p-button-sm">
+                          </p-button>
+                      </div>
+                  </ng-template>
+              </p-card>
+          </div>
+      </div>
+      
+      <!-- Pagination -->
+      <p-paginator
+          *ngIf="allFoods.length > 0"
+          [rows]="pageSize"
+          [totalRecords]="allFoods.length"
+          [rowsPerPageOptions]="[6, 9, 12, 15]"
+          [first]="first"
+          (onPageChange)="onPageChange($event)"
+          styleClass="mt-6 shadow-sm border border-surface-200 dark:border-surface-700 rounded-lg">
+      </p-paginator>
+  </section>
 </div>
+

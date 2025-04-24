@@ -5,7 +5,6 @@ import { Documentation } from './app/pages/documentation/documentation';
 import { Landing } from './app/pages/landing/landing';
 import { NotfoundComponent } from './app/pages/notfound/notfound';
 import { HomeComponent } from './app/pages/home/home.component';
-
 // Define the main application routes using the AppLayout structure
 export const appRoutes: Routes = [
     {

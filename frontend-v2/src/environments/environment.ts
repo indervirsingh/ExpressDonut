@@ -1,6 +1,6 @@
 // environment.ts
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000/api',
-    apiPort: 5100,
+    apiUrl: 'http://localhost',
+    apiPort: 5100
   };
