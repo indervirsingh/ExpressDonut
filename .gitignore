@@ -1,5 +1,8 @@
 # IntelliJ IDEA
 .idea/
 
-# VSCode 
+# VSCode
 .vscode/
+
+# frontend v1
+/frontend
