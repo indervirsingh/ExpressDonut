@@ -143,6 +143,7 @@
   font-weight: 500;
   transition: .2s;
   &:hover { filter: brightness(.9); }
+  margin-top: 1rem;
 }
 
 :host {
@@ -162,10 +163,45 @@
           .p-inputtext { padding-left: 2.5rem; }
       }
       .p-dropdown .p-dropdown-label { padding-right: 2.5rem; }
-      .price-input { width: 5rem !important; }
-      .p-inputnumber.p-component {
-          max-width: calc(50% - 1rem);
-          .p-inputtext { text-align: right; }
+      
+      .price-range-container {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          
+          @media(min-width: 480px) {
+              flex-direction: row;
+              align-items: center;
+              gap: 1rem;
+          }
+      }
+
+      .price-inputs {
+          display: flex;
+          gap: 1rem;
+          flex: 1;
+          
+          @media(min-width: 480px) {
+              min-width: 0;
+          }
+      }
+
+      .price-input {
+          flex: 1;
+          min-width: 100px;
+          
+          .p-inputnumber.p-component {
+              width: 100%;
+              
+              .p-inputtext {
+                  text-align: left;
+                  padding-right: 2rem;
+              }
+          }
+      }
+
+      .price-separator {
+          white-space: nowrap;
       }
 
       /* Fix for input number width */
@@ -182,14 +218,7 @@
           .price-range-container {
               flex-direction: row;
               align-items: center;
-              .price-inputs {
-                  flex: 1;
-                  min-width: 0;
-              }
-              .price-apply-btn {
-                  width: auto;
-                  margin-top: 0;
-              }
+              gap: 1rem;
           }
       }
   }
