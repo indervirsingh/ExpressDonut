@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { AppLayout } from './app/layout/component/app.layout';
 import { Dashboard } from './app/pages/dashboard/dashboard';
 import { Documentation } from './app/pages/documentation/documentation';
-import { Landing } from './app/pages/landing/landing';
 import { NotfoundComponent } from './app/pages/notfound/notfound';
 import { HomeComponent } from './app/pages/home/home.component';
 // Define the main application routes using the AppLayout structure
@@ -20,7 +19,7 @@ export const appRoutes: Routes = [
         ]
     },
     // Standalone pages outside the main layout
-    { path: 'landing', component: Landing },
+    // { path: 'landing', component: Landing },
     // { path: 'auth', loadChildren: () => import('./pages/auth/auth.routes') },
     { path: 'notfound', component: NotfoundComponent },
     // Wildcard route redirects to the 'notfound' page
