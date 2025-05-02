@@ -4,8 +4,14 @@
 # VSCode
 .vscode/
 
+# DS_Store
+.DS_Store
+
 # frontend v1
 /frontend
 
 # Codebase Analysis and Improvement Task Checklist
 /docs
+
+# Windsurf AI
+.windsurfrules  
