@@ -1,15 +1,15 @@
 {
   "name": "expressdonut",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "engines": {
     "node": "^18.13.0 || ^20.9.0"
   },
   "description": "Express Donut Website",
   "scripts": {
-    "start": "cd backend/built && bun server.js",
-    "prebuild": "cd backend && bun run build",
-    "build": "cd frontend && bun run build",
-    "build-dev": "cd frontend && bun run build-dev",
+    "start": "cd backend/built && node server.js",
+    "prebuild": "cd backend && npm run build",
+    "build": "cd frontend-v2 && npm run build",
+    "build-dev": "cd frontend-v2 && npm run build-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Indervir Singh"

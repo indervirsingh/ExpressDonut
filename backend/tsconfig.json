@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node10",
     "strict": true,
     "outDir": "./built",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "target": "ES2022",
-    "allowImportingTsExtensions": true,
     "allowJs": true,
-    "noEmit": true
+    "noEmit": false,
+    "moduleDetection": "force",
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"]
 }

@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/expressdonut-v2",
+                        "outputPath": "../backend/built/public",
                         "index": "src/index.html",
                         "browser": "src/main.ts",
                         "polyfills": [
