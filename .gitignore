@@ -3,3 +3,9 @@
 
 # VSCode 
 .vscode/
+
+
+.DS_Store
+.windsurfrules
+docs/
+frontend-v2/
