@@ -22,7 +22,7 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.2",
-    "typescript": ">=4.9.3 <5.9.0"
+    "typescript": ">=4.9.3 <5.10.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
